@@ -1,0 +1,31 @@
+# Project: up
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe -D__DEBUG__
+CC   = gcc.exe -D__DEBUG__
+WINDRES = windres.exe
+RES  = 
+OBJ  = up.o $(RES)
+LINKOBJ  = up.o $(RES)
+LIBS =  -L"lib"  -g3 
+INCS =  -I"include" 
+CXXINCS =  -I"lib/gcc/mingw32/3.4.2/include"  -I"include/c++/3.4.2/backward"  -I"include/c++/3.4.2/mingw32"  -I"include/c++/3.4.2"  -I"include" 
+BIN  = up.a
+CXXFLAGS = $(CXXINCS)   -O3 -g3
+CFLAGS = $(INCS)   -O3 -g3
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before up.a all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(LINKOBJ)
+	ar r $(BIN) $(LINKOBJ)
+	ranlib $(BIN)
+
+up.o: up.cpp
+	$(CPP) -c up.cpp -o up.o $(CXXFLAGS)
